@@ -83,7 +83,7 @@ class ViewController: UIViewController {
                     CLGeocoder().reverseGeocodeLocation(location){(placemarks, error) in
                     if let error = error
                     {
-                        print(error)
+                        //print(error)
                     }
                     else
                     {
@@ -102,7 +102,7 @@ class ViewController: UIViewController {
                             }
                             
                             if placemark.subAdministrativeArea != nil{
-                                annotation.title = placemark.subAdministrativeArea
+                                //annotation.title = placemark.subAdministrativeArea
 
                                 address = address + placemark.subAdministrativeArea! + "\n"
                             }
@@ -115,11 +115,13 @@ class ViewController: UIViewController {
                                 address = address + placemark.country! + "\n"
                             }
                           
-                          print(address)
+                          //print(address)
+                            annotation.title = address
                       }
                     }
                     }
-                annotation.title = address
+                //annotation.title = address
+                    print(address)
                 mapView.addAnnotation(annotation)
 
                 }
@@ -141,7 +143,7 @@ class ViewController: UIViewController {
 
         }
 
-        extension ViewController: MKMapViewDelegate
+extension ViewController: MKMapViewDelegate
         {
 
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -221,5 +223,8 @@ class ViewController: UIViewController {
                 }
                 
             }
+            
+            
+            
 
         }
