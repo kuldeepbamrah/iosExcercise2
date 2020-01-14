@@ -187,11 +187,8 @@ extension ViewController: MKMapViewDelegate
                 
                 let overlays = mapView.overlays
                 mapView.removeOverlays(overlays)
-                //let temp = view.annotation?.coordinate
-                //let location2d = CLLocationCoordinate2D(latitude: (temp?.latitude)!, longitude: (temp?.longitude)!)
                 location2d.removeAll()
                 locationArray.removeAll()
-                //mapView.removeAnnotations(mapView.selectedAnnotations)
                 mapView.removeAnnotation(view.annotation!)
                 labelAtoB.text = "_ Km"
                 labelAtoC.text = "_ Km"
