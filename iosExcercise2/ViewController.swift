@@ -88,7 +88,7 @@ class ViewController: UIViewController {
                     CLGeocoder().reverseGeocodeLocation(location){(placemarks, error) in
                     if let error = error
                     {
-                        //print(error)
+                        print(error)
                     }
                     else
                     {
@@ -193,6 +193,9 @@ extension ViewController: MKMapViewDelegate
                 locationArray.removeAll()
                 //mapView.removeAnnotations(mapView.selectedAnnotations)
                 mapView.removeAnnotation(view.annotation!)
+                labelAtoB.text = "_ Km"
+                labelAtoC.text = "_ Km"
+                labelBtoC.text = "_ Km"
                 addLocation2d()
                 addToLocationArray()
                 
