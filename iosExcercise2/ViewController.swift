@@ -13,12 +13,17 @@ class ViewController: UIViewController {
     var location2d : [CLLocationCoordinate2D] = []
     var locationArray : [CLLocation] = []
     
+    @IBOutlet weak var labelAtoB: UILabel!
+    @IBOutlet weak var labelAtoC: UILabel!
+    @IBOutlet weak var labelBtoC: UILabel!
     
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
        // define lat and long
-                
+        labelAtoB.text = "_ Km"
+        labelAtoC.text = "_ Km"
+        labelBtoC.text = "_ Km"
                 let latitude: CLLocationDegrees = 43.64
                 let longitude: CLLocationDegrees = -79.38
                 
@@ -128,7 +133,7 @@ class ViewController: UIViewController {
                 if mapView.annotations.count == 3
                 {
                     addPolygon()
-
+                    findDistance()
                 }
 
         }
@@ -162,7 +167,7 @@ extension ViewController: MKMapViewDelegate
             }
             else if overlay is MKPolygon{
                 let renderer = MKPolygonRenderer(overlay: overlay)
-                renderer.fillColor = UIColor.orange.withAlphaComponent(0.4)
+                renderer.fillColor = UIColor.orange.withAlphaComponent(0.5)
                 renderer.strokeColor = UIColor.green
                 renderer.lineWidth = 3
                 return renderer
@@ -220,9 +225,40 @@ extension ViewController: MKMapViewDelegate
                     var location = CLLocation()
                     location = CLLocation(latitude: i.coordinate.latitude, longitude: i.coordinate.longitude)
                     locationArray.append(location)
+                    
                 }
                 
+                
             }
+    
+    
+    func findDistance()
+    {
+        var location1 : CLLocation
+        var location2 : CLLocation
+        var location3 : CLLocation
+            location1 = locationArray[0]
+            location2 = locationArray[1]
+            location3 = locationArray [2]
+         
+        let distanceAtoB = location1.distance(from: location2)
+        let distanceAtoC = location1.distance(from: location3)
+        let distanceBtoC = location2.distance(from: location3)
+        
+//        print("\(distanceAtoB/1000) KM")
+//      print("\(distanceAtoC/1000) KM")
+//       print("\(distanceBtoC/1000) KM")
+        
+        let string1 = String(format : "%.2f Km", distanceAtoB/1000)
+        let string2 = String(format : "%.2f Km", distanceAtoC/1000)
+        let string3 = String(format : "%.2f Km", distanceBtoC/1000)
+        labelAtoB.text = string1
+        labelAtoC.text = string2
+        labelBtoC.text = string3
+        
+        
+        
+    }
             
             
             
